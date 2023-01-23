@@ -1,6 +1,8 @@
-const tmi = require("tmi.js");
-const getLastPredator = require("./getApex");
-require("dotenv").config();
+import pkg from "tmi.js";
+import { getLastPredator, getCurrentRPofPlayer } from "./getApex.js";
+import * as dotenv from "dotenv";
+dotenv.config();
+const tmi = pkg;
 
 // Define configuration options
 const opts = {
@@ -20,7 +22,7 @@ client.on("connected", onConnectedHandler);
 client.connect();
 
 // Called every time a message comes in
-function onMessageHandler(target, context, msg, self) {
+async function onMessageHandler(target, context, msg, self) {
   if (self) {
     return;
   } // Ignore messages from the bot
@@ -28,11 +30,24 @@ function onMessageHandler(target, context, msg, self) {
   const commandName = msg.trim();
 
   if (commandName === "!предатор" || commandName === "пред") {
-    console.log(getLastPredator);
-    client.say(target, `До предатора ${msg}`);
+    //TODO make calculation between current and lust predatot, then show it
+    const res = await getAndCalculateDifferenceRP();
+    client.say(target, `До предатора ${res}`);
   }
 }
 
 function onConnectedHandler(addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
+}
+
+async function getAndCalculateDifferenceRP() {
+  const resLastPredator = await getLastPredator.then((result) => result);
+  const resCurrentRPofPlayer = await getCurrentRPofPlayer.then((result) => result);
+
+  const lastNumber = resLastPredator.RP.PC.val;
+  const currentNumber = resCurrentRPofPlayer.RP.PC.val;
+
+  res = lastNumber - currentNumber
+
+  return res;
 }

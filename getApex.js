@@ -1,20 +1,18 @@
-require("dotenv").config();
+import * as dotenv from "dotenv";
+dotenv.config();
 const APIkey = `auth=${process.env.APEX_KEY}`;
 const urlPredator = `https://api.mozambiquehe.re/predator?${APIkey}`;
+const urlPlayer = `https://api.mozambiquehe.re/bridge?${APIkey}&player=Recrent&platform=PC`;
 
-const getLastPredator = fetch(urlPredator)
+//get RP from #750 apex predator
+export const getLastPredator = fetch(urlPredator)
   .then((response) => response.json())
-  .then((data) => {
-    console.log(data.RP.PC.val);
-    return data.RP.PC.val;
-  })
   .catch((err) => console.log("Error while getting info API" + err));
 
-async function printLastPredator() {
-    const a = await getLastPredator;
-    return a;
-}
-const b = printLastPredator()
-console.log(`The result of fetch is ${b}`);
+//TODO: make fetch to take a current RP of player
 
-module.exports.getLastPredator = getLastPredator;
+//get current RP of a player
+export const getCurrentRPofPlayer = fetch(urlPlayer)
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((err) => console.log("Error while getting info API" + err));
