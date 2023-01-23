@@ -10,7 +10,7 @@ const opts = {
     username: process.env.USERNAME,
     password: process.env.PASSWORD,
   },
-  channels: ["katanzz"],
+  channels: ["katanzz", "recrent"],
 };
 
 // Create a client with our options
@@ -29,10 +29,10 @@ async function onMessageHandler(target, context, msg, self) {
 
   const commandName = msg.trim();
 
-  if (commandName === "!предатор" || commandName === "пред") {
-    //TODO make calculation between current and lust predatot, then show it
+  if (commandName === "!предатор" || commandName === "предатор") {
+    console.log("123");
     const res = await getAndCalculateDifferenceRP();
-    client.say(target, `До предатора ${res}`);
+    client.say(target, `@${context.username} до предатора ${res}`);
   }
 }
 
@@ -50,6 +50,5 @@ async function getAndCalculateDifferenceRP() {
   const currentNumber = resCurrentRPofPlayer.global.rank.rankScore;
 
   let res = lastNumber - currentNumber;
-
   return res;
 }
