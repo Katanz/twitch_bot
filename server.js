@@ -42,12 +42,14 @@ function onConnectedHandler(addr, port) {
 
 async function getAndCalculateDifferenceRP() {
   const resLastPredator = await getLastPredator.then((result) => result);
-  const resCurrentRPofPlayer = await getCurrentRPofPlayer.then((result) => result);
+  const resCurrentRPofPlayer = await getCurrentRPofPlayer.then(
+    (result) => result
+  );
 
   const lastNumber = resLastPredator.RP.PC.val;
-  const currentNumber = resCurrentRPofPlayer.RP.PC.val;
+  const currentNumber = resCurrentRPofPlayer.global.rank.rankScore;
 
-  res = lastNumber - currentNumber
+  let res = lastNumber - currentNumber;
 
   return res;
 }
