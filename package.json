@@ -1,0 +1,23 @@
+{
+  "name": "twitch_bot",
+  "version": "0.0.1",
+  "description": "Twitch bot for Recrent",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon ./server.js"
+  },
+  "keywords": [
+    "twitch",
+    "bot",
+    "recrent"
+  ],
+  "author": "katanz",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "tmi.js": "^1.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
