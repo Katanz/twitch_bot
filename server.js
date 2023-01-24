@@ -31,7 +31,7 @@ async function onMessageHandler(target, context, msg, self) {
 
   //TODO make timer for second reply
 
-  if (commandName === "!предатор" || commandName === "предатор") {
+  if (commandName === "!предатор") {
     const res = await getAndCalculateDifferenceRP();
     client.say(target, `@${context.username} до предатора ${res}`);
     await sleep(30000);
