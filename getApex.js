@@ -7,9 +7,9 @@ const urlPlayer = `https://api.mozambiquehe.re/bridge?${APIkey}&player=MrRecrent
 //get RP from #750 apex predator
 export const getLastPredator = fetch(urlPredator)
   .then((response) => response.json())
-  .catch((err) => console.log("Error while getting info API" + err));
+  .catch((err) => console.log("Error while getting info from API" + err));
 
 //get current RP of a player
 export const getCurrentRPofPlayer = fetch(urlPlayer)
   .then((response) => response.json())
-  .catch((err) => console.log("Error while getting info API" + err));
+  .catch((err) => console.log("Error while getting info from API" + err));
